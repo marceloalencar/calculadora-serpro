@@ -36,12 +36,14 @@ export class PGCS {
     percentualSerpros,
     idadeSerpros,
     checkAlimentacao,
+    checkOdontologico,
   }) {
     let base = this.calculadora.calcularBase(this.niveis[0], nivel, degrau);
     let gratificao = this.calculadora.calcularGratificacao(classe, base);
     let gfe = this.gfe[gfeIndex];
     let gfc = this.gfc[gfcIndex];
     let decontoPlanoSaude = 0;
+    let descontoOdontologico = 0;
     let descontoSerpros = 0.0;
     let alimentacao = 0;
     let deducaoAlimentacao = 0.0;
@@ -57,6 +59,11 @@ export class PGCS {
     if (idade) {
       const dadosPlano = this.planoSaude.calculate({ idade, nivel });
       decontoPlanoSaude = dadosPlano.desconto;
+    }
+
+    //Plano odontologico
+    if (checkOdontologico) {
+      descontoOdontologico = this.planoSaude.odontologico;
     }
 
     //REAJUSTE
@@ -83,7 +90,7 @@ export class PGCS {
     //DEDUCOES
     const irpf = this.calculadora.calcularIRPF(totalBruto, descontoSerpros);
     const inss = this.calculadora.inss;
-    const totalDeducoes = irpf+deducaoAlimentacao+inss+decontoPlanoSaude+descontoSerpros;
+    const totalDeducoes = irpf+deducaoAlimentacao+inss+decontoPlanoSaude+descontoOdontologico+descontoSerpros;
 
     const liquido =
       totalBruto -
@@ -91,6 +98,7 @@ export class PGCS {
       deducaoAlimentacao -
       inss -
       decontoPlanoSaude -
+      descontoOdontologico -
       descontoSerpros;
 
     return {
@@ -111,6 +119,7 @@ export class PGCS {
         deducaoAlimentacao: this._formatNumber(deducaoAlimentacao),
         inss: this._formatNumber(inss),
         planoSaude: this._formatNumber(decontoPlanoSaude),
+        planoOdontologico: this._formatNumber(descontoOdontologico),
         serpros: this._formatNumber(descontoSerpros),
         resumo: this._formatNumber(totalDeducoes),
       },

@@ -36,6 +36,12 @@ export default function Deducoes({ deducoes }) {
           />
 
           <CardItem
+            title="Plano Odontológico:"
+            value={`R$ ${deducoes.planoOdontologico}`}
+            colorClass="text-red-600"
+          />
+
+          <CardItem
             title="Serpros:"
             value={`R$ ${deducoes.serpros}`}
             colorClass="text-red-600"

@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export default function PlanoSaudeForm({ idade, setIdade }) {
+export default function PlanoSaudeForm({
+  idade,
+  setIdade,
+  checkOdontologico,
+  setCheckOdontologico,
+}) {
   const [checkPlano, setCheckPlano] = useState(false);
 
   function togglePlano() {
@@ -18,7 +23,7 @@ export default function PlanoSaudeForm({ idade, setIdade }) {
         Plano de Saúde
       </h2>
       <p className="mt-1 text-sm leading-6 text-gray-600">
-        Configurações de Plano de Saúde
+        Configurações de Plano de Saúde e Odontológico
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -60,6 +65,23 @@ export default function PlanoSaudeForm({ idade, setIdade }) {
             </div>
           </div>
         )}
+
+        <div className="sm:col-span-1">
+          <label
+            htmlFor="plano_odontologico"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Plano odontológico
+          </label>
+          <div className="mt-2 w-24">
+            <input
+              id="plano_odontologico"
+              type="checkbox"
+              checked={checkOdontologico}
+              onChange={() => setCheckOdontologico(!checkOdontologico)}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
