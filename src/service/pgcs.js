@@ -38,7 +38,7 @@ export class PGCS {
     checkAlimentacao,
     checkOdontologico,
   }) {
-    let base = this.calculadora.calcularBase(this.niveis[0], nivel, degrau);
+    let base = this.calculadora.calcularBase(nivel, degrau);
     let gratificao = this.calculadora.calcularGratificacao(classe, base);
     let gfe = this.gfe[gfeIndex];
     let gfc = this.gfc[gfcIndex];
