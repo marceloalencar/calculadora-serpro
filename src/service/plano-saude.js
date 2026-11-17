@@ -13,18 +13,20 @@ export class PlanoSaude {
       "59 ou mais",
     ];
     this.mensalidades = [
-      541.2, 568.52, 640.13, 746.38, 808.26, 825.62, 977.44, 1017.62, 1145.22,
-      1765.49,
+      748.65, 786.43, 885.49, 1032.47, 1118.07, 1142.09, 1352.1, 1407.69,
+      1584.19, 2442.22,
     ];
 
     //101-8A - 104-8B => [0]
     //105-8A - 122-8B => [1]
-    this.participacao = [355.51, 284.95];
+    //Vigência: dezembro/2025 (Analista 8h)
+    this.participacao = [590.15, 473.01];
+    this.mensalidadeMinima = [168.3, 184.52];
   }
 
   calculate({ nivel, idade }) {
-    const participacao =
-      nivel < 105 ? this.participacao[0] : this.participacao[1];
+    const grupo = nivel < 105 ? 0 : 1;
+    const participacao = this.participacao[grupo];
 
     const faixaIndex = this._parseFaixa(idade);
     const mensalidade = this.mensalidades[faixaIndex];
@@ -32,7 +34,10 @@ export class PlanoSaude {
     return {
       mensalidade: mensalidade,
       participacao: participacao,
-      desconto: mensalidade - participacao,
+      desconto: Math.max(
+        mensalidade - participacao,
+        this.mensalidadeMinima[grupo]
+      ),
     };
   }
 

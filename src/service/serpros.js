@@ -1,6 +1,8 @@
 export class Serpros {
     constructor() {
-        this.vrs = 521.39;
+        this.vrs = 571.70;
+        // Contribuição de risco temporariamente suspensa pela Serpros
+        this.riscoSuspenso = true;
         this.pa = [0,        // 18...
                    0,
                    0,
@@ -103,7 +105,7 @@ export class Serpros {
         const index = this._parseIndex(idadeSerpros);
         const contribuicaoBasica = salarioContribuicao * 0.01;
         const contribuicaoVariavel = ((salarioContribuicao - (8 * this.vrs)) * (percentualSerpros / 100));
-        const contribuicaoRisco = (salarioContribuicao * (this.pg[index] / 100)) + ((salarioContribuicao - (14 * this.vrs)) * (this.pa[index] / 100));
+        const contribuicaoRisco = this.riscoSuspenso ? 0 : (salarioContribuicao * (this.pg[index] / 100)) + ((salarioContribuicao - (14 * this.vrs)) * (this.pa[index] / 100));
 
         return {
             contribuicaoBasica: contribuicaoBasica,

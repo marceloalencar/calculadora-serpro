@@ -1,8 +1,8 @@
 export class Calculadora {
   constructor() {
     //BASE
-    this.base = 8578.84;
-    this.alimentacao = 1230.72;
+    this.base = 9587.1; // Tabela PGCS Analista 8h, vigência 01/05/2026 (ACT 2025/2027)
+    this.alimentacao = 1375.44;
 
     //PERCENTUAIS
     this.p_alimentacao = 0.08;
@@ -11,9 +11,9 @@ export class Calculadora {
     this.p_fgts = 0.08;
 
     //IRPF
-    this.inss = 908.85;
+    this.inss = 988.07; // teto 2026 (R$ 8.475,55)
     this.alicotaIR = 0.275;
-    this.baseDeducao = 896.00;
+    this.baseDeducao = 908.73; // parcela a deduzir 27,5% (tabela desde 05/2025)
 
     //GRATIFICACAO
     this.p_gratificacao = {
