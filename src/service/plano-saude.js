@@ -22,6 +22,9 @@ export class PlanoSaude {
     //Vigência: dezembro/2025 (Analista 8h)
     this.participacao = [590.15, 473.01];
     this.mensalidadeMinima = [168.3, 184.52];
+
+    //Plano odontológico: valor fixo mensal
+    this.odontologico = 5.33;
   }
 
   calculate({ nivel, idade }) {

@@ -16,6 +16,7 @@ export default function CalcForm({ setData }) {
   const [checkAlimentacao, setChekAlimentacao] = useState(true);
 
   const [idade, setIdade] = useState(undefined);
+  const [checkOdontologico, setCheckOdontologico] = useState(false);
   const [percentualSerpros, setPercentualSerpros] = useState(undefined);
   const [idadeSerpros, setIdadeSerpros] = useState(undefined);
 
@@ -33,6 +34,7 @@ export default function CalcForm({ setData }) {
       percentualSerpros,
       idadeSerpros,
       checkAlimentacao,
+      checkOdontologico,
     });
     setData(result);
   }, [
@@ -47,6 +49,7 @@ export default function CalcForm({ setData }) {
     percentualSerpros,
     idadeSerpros,
     checkAlimentacao,
+    checkOdontologico,
   ]);
 
   return (
@@ -264,7 +267,12 @@ export default function CalcForm({ setData }) {
           </div>
         </div>
 
-        <PlanoSaudeForm idade={idade} setIdade={setIdade} />
+        <PlanoSaudeForm
+          idade={idade}
+          setIdade={setIdade}
+          checkOdontologico={checkOdontologico}
+          setCheckOdontologico={setCheckOdontologico}
+        />
 
         <SerprosForm
           percentualSerpros={percentualSerpros}
